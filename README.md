@@ -3,17 +3,17 @@
 
 ## Table of contents
 
-- About ​
-- Overview ​
-   - TypingDNARecorderMobile class ​
-- Methods ​
-   - TypingDNA.getTypingPattern (parameters) ​
-   - TypingDNA.addTarget(UITextField) ​
-   - TypingDNA.removeTarget(UITextField) ​
-   - TypingDNA.reset() ​
-   - TypingDNA.start() ​
-   - TypingDNA.stop() ​
-- Recommendations ​
+- About
+- Overview
+- TypingDNARecorderMobile class
+- Methods
+- TypingDNA.getTypingPattern (parameters)
+- TypingDNA.addTarget(UITextField)
+- TypingDNA.removeTarget(UITextField)
+- TypingDNA.reset()
+- TypingDNA.start()
+- TypingDNA.stop()
+- Recommendations
 
 
 ## About
@@ -22,7 +22,7 @@ The recorder captures user’s typing patterns.
 
 It does so by recording timings based on keydown and keyup events, but also motion data related to the typing behavior (accelerometer, gyroscope, orientation). Recording motion data is specific for the mobile recorder and does not apply for the JavaScript desktop recorder.
 
-> **Note**​: The iOS version does not get the keydown events triggered through the events notification system, rather it uses some workarounds to capture them. Also, the recording might not work properly if emojis are used.
+> **Note**: The iOS version does not get the keydown events triggered through the events notification system, rather it adds listeners on each input you want to target for these events. Also, the recording might not work properly if emojis are used.
 
 
 ## Overview
@@ -33,11 +33,13 @@ First you need to import the file **TypingDNARecorderMobile.swift** in the app t
 
 ### TypingDNARecorderMobile class
 
-Once you create an instance of the TypingDNARecorderMobile class, the user typing starts being recorded (as a history of key stroke events). Whenever you want to get the user's typing pattern you have to invoke .getTypingPattern method described in detail below.
+Once you create an instance of the `TypingDNARecorderMobile` class, the user typing starts being recorded (as a history of key stroke events). Whenever you want to get the user's typing pattern you have to invoke `.getTypingPattern` method described in detail below.
 
 ```swift
 class ViewController: UIViewController {
-   var tdna = TypingDNARecorderMobile();
+	var tdna = TypingDNARecorderMobile();
+	// .start() can be called later but not after the user starts typing
+	tdna.start();
 }
 ```
 
@@ -81,14 +83,14 @@ static public func getTypingPattern(_ type:Int, _ length:Int, _ text:String, _ t
 
 **Parameters:**
 
-| Param         	| Type    	| Description                                                                                                                                                                                                                                                                                                                                                            	|
-|---------------	|---------	|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
-| type          	| `Int`     	| `0 for anytext pattern` (when you compare random typed texts of usually 120-180 chars long).​ `1 for sametext pattern` recommended in most cases, for emails, passwords, phone numbers, credit cards, short texts).​ `2 for extended pattern` (most versatile, can replace both anytext and sametext patterns. Best accuracy, recommended in cases where text is not a secret) 	|
-| textid        	|`Int`     	| (Optional, only for type 1 and type 2) a personalized id for the typed text. 0 = ignore  	|
-| text          	| `String`  	| (Only for type 1 and type 2) a string that you want the typing pattern for 	|
-| length        	| `Int`     	| (Optional) the length of the text in the history for which you want the typing pattern, for type 0 is usually 140 or more. 0 = ignore	|
-| target        	| `UITextField`  	| (Optional) specifies if pattern should be obtained only from text typed in a certain target. nil = ignore 	|
-| caseSensitive 	| `Bool` 	| (Optional, default: false) Used if you pass a text for type 1 	|                                                                                                                                                                                                                                                                                	|
+| Param             | Type        | Description                                                                                                                                                                                                                                                                                                                                                                |
+|---------------    |---------    |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    |
+| type              | `Int`         | `0 for anytext pattern` (when you compare random typed texts of usually 120-180 chars long).​ `1 for sametext pattern` recommended in most cases, for emails, passwords, phone numbers, credit cards, short texts).​ `2 for extended pattern` (most versatile, can replace both anytext and sametext patterns. Best accuracy, recommended in cases where text is not a secret)     |
+| textid            |`Int`         | (Optional, only for type 1 and type 2) a personalized id for the typed text. (0 = default value, the recorder will generate an id by hasing the entered text if 0 is passed)      |
+| text              | `String`      | (Only for type 1 and type 2) a string that you want the typing pattern for     |
+| length            | `Int`         | (Optional) the length of the text for which you want the typing pattern, for type 0 is usually 140 or more. 0 = ignore (works only if previous parameter 'text' = “”)    |
+| target            | `UITextField`      | (Optional) specifies if pattern should be obtained only from text typed in a certain target. nil = ignore     |
+| caseSensitive     | `Bool`     | (Optional, default: false) Used if you pass a text for type 1     |                                                                                                                                                                                                                                                                                    |
 
 **Example:**
 Example of getting type 1 typing pattern.
@@ -126,14 +128,13 @@ static public func addTarget(_ targetField:UITextField)
 
 ```swift
 class ViewController: UIViewController {
-   var tdna = TypingDNARecorderMobile();
+	var tdna = TypingDNARecorderMobile();
 
-   override func viewDidLoad() {
-       super.viewDidLoad();
-       // Adding text field target for recording typing pattern. Typing 
-       patterns are recorded only on this field(s).
-       TypingDNARecorderMobile.addTarget(textField);
-   }
+	override func viewDidLoad() {
+		super.viewDidLoad();
+		// Adding text field target for recording typing pattern. Typing patterns are recorded only on this field(s).
+		TypingDNARecorderMobile.addTarget(textField);
+	}
 }
 ```
 
@@ -185,6 +186,3 @@ We recommend that you deactivate **autocorrect** & **predictive features**  for 
 For mobile apps, we recommend you use  **type 1**  or **type 2**  typing patterns. The type 1/2 patterns work well with 15-30 chars of text, while type 0 pattern needs much more data to have good accuracy (120-150 chars of text).
 
 For types 1/2 we recommend at least 3 enrolled patterns for a good accuracy.
-
-
-

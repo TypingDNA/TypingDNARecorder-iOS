@@ -21,6 +21,7 @@
 
 import UIKit
 import NotificationCenter
+import TypingDNARecorderMobile
 
 class ViewController: UIViewController {
 

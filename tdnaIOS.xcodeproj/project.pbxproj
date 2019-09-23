@@ -7,15 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1E08F5E232A70E60065F438 /* TypingDNARecorderMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1FE2E2D23140E10006DDABC /* TypingDNARecorderMobile.framework */; };
+		B1E08F5F232A70E60065F438 /* TypingDNARecorderMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1FE2E2D23140E10006DDABC /* TypingDNARecorderMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EB255E4121384E110092E752 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB255E4021384E110092E752 /* AppDelegate.swift */; };
 		EB255E4321384E110092E752 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB255E4221384E110092E752 /* ViewController.swift */; };
 		EB255E4621384E110092E752 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB255E4421384E110092E752 /* Main.storyboard */; };
 		EB255E4821384E110092E752 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB255E4721384E110092E752 /* Assets.xcassets */; };
 		EB255E4B21384E110092E752 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB255E4921384E110092E752 /* LaunchScreen.storyboard */; };
-		EB255E53213855A40092E752 /* TypingDNARecorderMobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB255E52213855A40092E752 /* TypingDNARecorderMobile.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B1E08F5C232A37300065F438 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1FE2E2723140E10006DDABC /* TypingDNARecorderMobile.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B1FE2E1423140C9C006DDABC;
+			remoteInfo = TypingDNARecorderMobile;
+		};
+		B1E08F60232A70E60065F438 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1FE2E2723140E10006DDABC /* TypingDNARecorderMobile.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B1FE2E1423140C9C006DDABC;
+			remoteInfo = TypingDNARecorderMobile;
+		};
+		B1FE2E2C23140E10006DDABC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1FE2E2723140E10006DDABC /* TypingDNARecorderMobile.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B1FE2E1523140C9C006DDABC;
+			remoteInfo = TypingDNARecorderMobile;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B1E08F62232A70E60065F438 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B1E08F5F232A70E60065F438 /* TypingDNARecorderMobile.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		B1FE2E2723140E10006DDABC /* TypingDNARecorderMobile.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TypingDNARecorderMobile.xcodeproj; path = TypingDNARecorderMobile/TypingDNARecorderMobile.xcodeproj; sourceTree = "<group>"; };
 		EB255E3D21384E110092E752 /* tdnaIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tdnaIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB255E4021384E110092E752 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB255E4221384E110092E752 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -23,7 +63,6 @@
 		EB255E4721384E110092E752 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB255E4A21384E110092E752 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB255E4C21384E110092E752 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EB255E52213855A40092E752 /* TypingDNARecorderMobile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingDNARecorderMobile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,15 +70,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1E08F5E232A70E60065F438 /* TypingDNARecorderMobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B1FE2E2823140E10006DDABC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1FE2E2D23140E10006DDABC /* TypingDNARecorderMobile.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		EB255E3421384E110092E752 = {
 			isa = PBXGroup;
 			children = (
+				B1FE2E2723140E10006DDABC /* TypingDNARecorderMobile.xcodeproj */,
 				EB255E3F21384E110092E752 /* tdnaIOS */,
 				EB255E3E21384E110092E752 /* Products */,
 			);
@@ -58,7 +107,6 @@
 			children = (
 				EB255E4021384E110092E752 /* AppDelegate.swift */,
 				EB255E4221384E110092E752 /* ViewController.swift */,
-				EB255E52213855A40092E752 /* TypingDNARecorderMobile.swift */,
 				EB255E4421384E110092E752 /* Main.storyboard */,
 				EB255E4721384E110092E752 /* Assets.xcassets */,
 				EB255E4921384E110092E752 /* LaunchScreen.storyboard */,
@@ -77,10 +125,13 @@
 				EB255E3921384E110092E752 /* Sources */,
 				EB255E3A21384E110092E752 /* Frameworks */,
 				EB255E3B21384E110092E752 /* Resources */,
+				B1E08F62232A70E60065F438 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B1E08F5D232A37300065F438 /* PBXTargetDependency */,
+				B1E08F61232A70E60065F438 /* PBXTargetDependency */,
 			);
 			name = tdnaIOS;
 			productName = tdnaIOS;
@@ -115,12 +166,28 @@
 			mainGroup = EB255E3421384E110092E752;
 			productRefGroup = EB255E3E21384E110092E752 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B1FE2E2823140E10006DDABC /* Products */;
+					ProjectRef = B1FE2E2723140E10006DDABC /* TypingDNARecorderMobile.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				EB255E3C21384E110092E752 /* tdnaIOS */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B1FE2E2D23140E10006DDABC /* TypingDNARecorderMobile.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TypingDNARecorderMobile.framework;
+			remoteRef = B1FE2E2C23140E10006DDABC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EB255E3B21384E110092E752 /* Resources */ = {
@@ -141,12 +208,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB255E4321384E110092E752 /* ViewController.swift in Sources */,
-				EB255E53213855A40092E752 /* TypingDNARecorderMobile.swift in Sources */,
 				EB255E4121384E110092E752 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B1E08F5D232A37300065F438 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TypingDNARecorderMobile;
+			targetProxy = B1E08F5C232A37300065F438 /* PBXContainerItemProxy */;
+		};
+		B1E08F61232A70E60065F438 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TypingDNARecorderMobile;
+			targetProxy = B1E08F60232A70E60065F438 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EB255E4421384E110092E752 /* Main.storyboard */ = {
@@ -282,15 +361,21 @@
 		EB255E5021384E110092E752 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SWC6BVSWFC;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TypingDNARecorderMobile",
+				);
 				INFOPLIST_FILE = tdnaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.typingdna.tdnaIOSRecorder;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.typingdna.typingdnarecorderIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -301,15 +386,20 @@
 		EB255E5121384E110092E752 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SWC6BVSWFC;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TypingDNARecorderMobile",
+				);
 				INFOPLIST_FILE = tdnaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.typingdna.tdnaIOSRecorder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.typingdna.typingdnarecorderIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
