@@ -1,0 +1,11 @@
+framework module TypingDNARecorderMobile {
+  umbrella header "TypingDNARecorderMobile.h"
+
+  export *
+  module * { export * }
+}
+
+module TypingDNARecorderMobile.Swift {
+    header "TypingDNARecorderMobile-Swift.h"
+    requires objc
+}
