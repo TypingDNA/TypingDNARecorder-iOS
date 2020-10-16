@@ -808,6 +808,7 @@ open class TypingDNARecorderMobile: NSObject {
             arr.append(String(flags));
             arr.append("-1"); // diagramType
             arr.append("0"); // strLength/histRev
+            arr.append("0"); // textId
             arr.append(getSpecialKeys());
             arr.append(getDeviceSignature());
             let typingPattern:String = arr.joined(separator: ",");
