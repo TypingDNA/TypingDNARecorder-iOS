@@ -181,7 +181,6 @@ open class TypingDNARecorderMobile: NSObject {
         log(message: "[TypingDNA] Resetting the recorder...", level: 1);
         historyStack = [[Int]]();
         stackDiagram = [[Int]]();
-        KIOSlastText.removeAll();
         pt1 = getTime();
         ut1 = getTime();
     }
@@ -457,6 +456,7 @@ open class TypingDNARecorderMobile: NSObject {
         let deviceSignature = getDeviceSignature();
         let returnStr0:String = [mobile, version, flags, diagramType, strLength, returnTextId, specialKeys, deviceSignature].map({String(describing: $0)}).joined(separator: ",");
         returnStr += returnStr0;
+        let motionDataReplacement = getMotionDataReplacement(extended);
         if (str.count > 0) {
             let strLower:String = str.lowercased();
             let strUpper:String = str.uppercased();
@@ -553,7 +553,7 @@ open class TypingDNARecorderMobile: NSObject {
                                     returnStr += "|" + [seekTime, pressTime].map({String(describing:$0)}).joined(separator: ",");
                                 }
                                 if (motionFixedData == true) {
-                                    motionArr.append("");
+                                    motionArr.append(motionDataReplacement);
                                 }
                                 if (motionArrayData == true) {
                                     kpzaArr.append("");
@@ -614,6 +614,12 @@ open class TypingDNARecorderMobile: NSObject {
         }
         log(message: "[TypingDNA] Diagram is { returnStr: %@ } ", level: 2, returnStr);
         return returnStr;
+    }
+    
+    fileprivate static func getMotionDataReplacement(_ extended: Bool) -> String {
+        let repeatCount = extended ? 10 : 8;
+        let replacement = Array.init(repeating: "0", count: repeatCount);
+        return replacement.joined(separator: ",");
     }
     
     fileprivate static func get(_ length: Int) -> String {
@@ -792,6 +798,7 @@ open class TypingDNARecorderMobile: NSObject {
                     var val:Double = varr[c];
                     if (Double(val).isNaN) {
                         val = 0.0;
+                        arr.append(String(val));
                     } else if (val == 0 && c > 0) {
                         val = 1.0;
                         arr.append(String(val));
@@ -807,7 +814,8 @@ open class TypingDNARecorderMobile: NSObject {
             arr.append(String(version));
             arr.append(String(flags));
             arr.append("-1"); // diagramType
-            arr.append("0"); // strLength/histRev
+            arr.append(String(describing: length)); // strLength/histRev
+            arr.append("0"); // textId
             arr.append(getSpecialKeys());
             arr.append(getDeviceSignature());
             let typingPattern:String = arr.joined(separator: ",");
@@ -847,12 +855,12 @@ open class TypingDNARecorderMobile: NSObject {
         let displayHeight = screenHeight; // screen height in pixels
         let orientation: Int;
         switch UIApplication.shared.statusBarOrientation {
-            case UIInterfaceOrientation.portrait, UIInterfaceOrientation.portraitUpsideDown:
-                orientation = 1;
-            case UIInterfaceOrientation.landscapeLeft, UIInterfaceOrientation.landscapeRight:
-                orientation = 2;
-            default:
-                orientation = 1;
+        case UIInterfaceOrientation.portrait, UIInterfaceOrientation.portraitUpsideDown:
+            orientation = 1;
+        case UIInterfaceOrientation.landscapeLeft, UIInterfaceOrientation.landscapeRight:
+            orientation = 2;
+        default:
+            orientation = 1;
         }
         let osVersion = Int(String(ProcessInfo.processInfo.operatingSystemVersion.majorVersion) + String(ProcessInfo.processInfo.operatingSystemVersion.minorVersion))!; // numbers only
         let browserVersion = 0; // numbers only
@@ -1023,10 +1031,6 @@ open class TypingDNARecorderMobile: NSObject {
     
     @objc
     static public func startRecordMotion() {
-        if(motionStarted || targetIds.count == 0) {
-            log(message: "[TypingDNA] Motion recording already started or no targets...", level: 2);
-            return;
-        }
         log(message: "[TypingDNA] Starting motion recording...", level: 2);
         let interval = 1.0 / 60.0; // Hz
         accQueue.maxConcurrentOperationCount = 2;
@@ -1395,8 +1399,6 @@ extension UIWindow {
             TypingDNARecorderMobile.log(message: "[TypingDNA] KIOS did setup", level: 1);
             NotificationCenter.default.addObserver(self, selector: #selector(self.UIW_KIOSkeyboardDidShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil);
             NotificationCenter.default.addObserver(self, selector: #selector(self.UIW_KIOSkeyboardDidHide(_:)), name: UIResponder.keyboardDidHideNotification, object: nil);
-            NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
             TypingDNARecorderMobile.KIOSdidSetup = true;
         }
         if (event != nil) {
@@ -1409,19 +1411,6 @@ extension UIWindow {
         return view == self ? nil : view;
     }
     
-    @objc func appDidEnterBackground() {
-        TypingDNARecorderMobile.stopRecordMotion()
-        TypingDNARecorderMobile.stop()
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
-    }
-    
-    @objc func appWillEnterForeground() {
-        TypingDNARecorderMobile.start()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.UIW_KIOSkeyboardDidShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil);
-        NotificationCenter.default.addObserver(self, selector: #selector(self.UIW_KIOSkeyboardDidHide(_:)), name: UIResponder.keyboardDidHideNotification, object: nil);
-    }
-    
     @objc func UIW_KIOSkeyboardDidShow(_ notification: NSNotification) {
         TypingDNARecorderMobile.startRecordMotion();
         TypingDNARecorderMobile.KIOSkeyboardOn = true;
@@ -1431,7 +1420,6 @@ extension UIWindow {
         TypingDNARecorderMobile.stopRecordMotion();
         TypingDNARecorderMobile.KIOSkeyboardOn = false;
     }
-    
 }
 
 
